@@ -1,0 +1,65 @@
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
+import AdminLoginPage from "./AdminLoginPage";
+
+const Button = styled.button`
+  background-color: black;
+  color: white;
+  font-size: 17px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin: 0 10px;
+  cursor: pointer;
+`;
+
+class NavigationBar extends Component {
+  render() {
+    return (
+      <div className="navbar">
+        <div className="navbar-content">
+          <Link to="http://localhost:3000/" className="custom-link">
+            <Button>Home</Button>
+          </Link>
+          {this.props.isAdminLoggedIn ? (
+            <>
+              <p>Welcome, Admin</p>
+              <Link to="/aboutUs" className="custom-link">
+                <Button>About us</Button>
+              </Link>
+              <Link to="/contact" className="custom-link">
+                <Button>Contact us</Button>
+              </Link>
+              <button className="custom-link" onClick={this.props.handleAdminLogout}>
+                Logout
+              </button>
+              <Link to="http://localhost:3000/" className="custom-link">
+                <Button>Logout</Button>
+              </Link>
+            </>
+          ) : (
+            <>
+              <Link to="/signup/user" className="custom-link">
+                <Button>Sign Up</Button>
+              </Link>
+              <Link to="/login/user" className="custom-link">
+                <Button>Login</Button>
+              </Link>
+              <Link to="/aboutUs" className="custom-link">
+                <Button>About us</Button>
+              </Link>
+              <Link to="/contact" className="custom-link">
+                <Button>Contact us</Button>
+              </Link>
+              <button className="custom-link" onClick={this.props.handleAdminLogin}>
+                Admin
+              </button>
+            </>
+          )}
+        </div>
+      </div>
+    );
+  }
+}
+
+export default NavigationBar;
