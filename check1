@@ -1,0 +1,87 @@
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
+import AdminLoginPage from "./AdminLoginPage"; // Import the AdminLoginPage component
+
+const Button = styled.button`
+  background-color: black;
+  color: white;
+  font-size: 17px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin: 0 10px;
+  cursor: pointer;
+`;
+
+class NavigationBar extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLoggedIn: false, // Add a state to track login status
+      isAdmin: false, // Add a state to track admin status
+    };
+  }
+
+  // Add a method to handle user login or admin login
+  handleLogin = () => {
+    // Your login logic here
+    // Update the state accordingly
+    this.setState({ isLoggedIn: true, isAdmin: false });
+  };
+
+  handleAdminLogin = () => {
+    // Your admin login logic here
+    // Update the state accordingly
+    this.setState({ isLoggedIn: true, isAdmin: true });
+  };
+
+  handleLogout = () => {
+    // Your logout logic here
+    // Update the state accordingly
+    this.setState({ isLoggedIn: false, isAdmin: false });
+  };
+
+  render() {
+    const { isLoggedIn, isAdmin } = this.state;
+
+    return (
+      <div className="navbar">
+        <div className="navbar-content">
+          <Link to="http://localhost:3000/" className="custom-link">
+            <Button>Home</Button>
+          </Link>
+          {isLoggedIn ? ( // Check if any user is logged in
+            <>
+              <Link to="/aboutUs" className="custom-link">
+                <Button>About us</Button>
+              </Link>
+              <Link to="/contact" className="custom-link">
+                <Button>Contact us</Button>
+              </Link>
+              {isAdmin ? ( // Check if the logged-in user is an admin
+                <button className="custom-link" onClick={this.handleLogout}>
+                  Logout
+                </button>
+              ) : (
+                // Displaying the AdminLoginPage component when the admin button is clicked
+                <AdminLoginPage onAdminLogin={this.handleAdminLogin} />
+              )}
+            </>
+          ) : (
+            // If not logged in, show Sign Up and Login buttons
+            <>
+              <Link to="/signup/user" className="custom-link">
+                <Button>Sign Up</Button>
+              </Link>
+              <Link to="/login/user" className="custom-link">
+                <Button onClick={this.handleLogin}>Login</Button>
+              </Link>
+            </>
+          )}
+        </div>
+      </div>
+    );
+  }
+}
+
+export default NavigationBar;
