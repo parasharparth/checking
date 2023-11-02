@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Data Table</title>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Rule_Set_Version</th>
+                <th>Attribute_Group</th>
+                <th>Rule_Version</th>
+                <th>Attribute_Name</th>
+                <th>System_Question</th>
+                <th>Precedenet_Question_Logic_User_Version</th>
+                <th>Entity_Types</th>
+                <th>Exemptions</th>
+                <th>Risk_of_parent</th>
+                <th>Client_Facing</th>
+                <th>Doc_Group_Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($data as $row)
+            <tr>
+                <td>{{ $row->ID }}</td>
+                <td>{{ $row->Rule_Set_Version }}</td>
+                <td>{{ $row->Attribute_Group }}</td>
+                <td>{{ $row->Rule_Version }}</td>
+                <td>{{ $row->Attribute_Name }}</td>
+                <td>{{ $row->System_Question }}</td>
+                <td>{{ $row->Precedenet_Question_Logic_User_Version }}</td>
+                <td>{{ $row->Entity_Types }}</td>
+                <td>{{ $row->Exemptions }}</td>
+                <td>{{ $row->Risk_of_parent }}</td>
+                <td>{{ $row->Client_Facing }}</td>
+                <td>{{ $row->Doc_Group_Details }}</td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+</body>
+</html>
