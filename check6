@@ -1,0 +1,4 @@
+// Retrieve dropdown options from the "master" table in the database
+        $idOptions = Master::pluck('column_name')->toArray(); // Replace 'column_name' with the actual column name
+        $ruleSetVersionOptions = Master::pluck('another_column')->toArray(); // Replace 'another_column' with the actual column name
+        $attributeGroupOptions = Master::pluck('yet_another_column')->toArray(); // Replace 'yet_another_column' with the actual column name
